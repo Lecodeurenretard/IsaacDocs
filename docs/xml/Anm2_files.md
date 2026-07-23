@@ -12,7 +12,7 @@ Specification: [https://www.reddit.com/r/themoddingofisaac/comments/377a9h/anima
     - [`<Info />`](#info-tag)
     - [`<Content>`](#content-tag)
         - `<Spritesheets>`
-            - [`<Spritesheet>`](#spritesheets-tag)
+            - [`<Spritesheet />`](#spritesheets-tag)
         - `<Layers>`
             - [`<Layer />`](#layer-tag)
         - `<Nulls>`
@@ -32,7 +32,7 @@ Specification: [https://www.reddit.com/r/themoddingofisaac/comments/377a9h/anima
             - `<Triggers>`
                 - [`<Trigger />`](#trigger-tag)
 ## "Info" Tag
-General metadata for the file. It is an orphan tag.
+General metadata for the file.
 
 | Attribute-Name | Type | Description |
 |:--|:--|:--|
@@ -53,7 +53,7 @@ Pairs a spritesheets with an ID.
 
 | Attribute-Name | Type | Description |
 |:--|:--|:--|
-| Path | string | File path to the spritesheet, starting from gfx/. |
+| Path | string | File path to the spritesheet, starting from anm2root (in [entities2.xml](entities2.md)). |
 | Id | int ||
 
 ### "Layer" Tag
@@ -66,7 +66,7 @@ Pairs a layer with a spritesheet and a name. Tags are ascending order of IDs.
 | SpritesheetId | int ||
 
 ### "Null" Tag
-Represents another in game object, for example in the "Pickup" animation of Isaac, a null layer is used to move the item Isaac raises above his head.
+Represents another in game object. For example in the "Pickup" animation of Isaac, a null layer is used to move the item Isaac raises above his head.
 
 | Attribute-Name | Type | Description |
 |:--|:--|:--|
@@ -103,7 +103,7 @@ Trigger for an ingame action, like a sound or an attack.
 Transformations to every layers.
 
 #### "LayerAnimation" Tag
-Animations per layers, if a layer is not animated, the tag may be orphan. There must be one `<LayerAnimation>` per layer.
+There must be one `<LayerAnimation>` per layer. Tags are sorted by drawing order: higher ones are drawn earlier.
 
 | Attribute-Name | Type | Description |
 |:--|:--|:--|
@@ -133,9 +133,9 @@ An animation to apply to another object (see [`<Null>`](#null-tag)).
 | GreenTint | int | Lower values makes the sprite less green ([example](https://imgur.com/EzN7NTU)). Should be between 0 and 255. Default = 255 |
 | BlueTint | int | Lower values makes the sprite less blue ([example](https://imgur.com/EzN7NTU)). Should be between 0 and 255. Default = 255 |
 | AlphaTint | int | Sprite's opacity. 255 is totally opaque, 0 is transparent. |
-| RedShift | int | Makes the sprite more red ([example](https://imgur.com/llvOzfe)). Should be between 0 and 255. Defalut = 0 |
-| GreenShift | int | Makes the sprite more green ([example](https://imgur.com/llvOzfe)). Should be between 0 and 255. Defalut = 0 |
-| BlueShift | int | Makes the sprite more blue ([example](https://imgur.com/llvOzfe)). Should be between 0 and 255. Defalut = 0 |
+| RedShift | int | Makes the sprite more red ([example](https://imgur.com/llvOzfe)). Should be between 0 and 255. Default = 0 |
+| GreenShift | int | Makes the sprite more green ([example](https://imgur.com/llvOzfe)). Should be between 0 and 255. Default = 0 |
+| BlueShift | int | Makes the sprite more blue ([example](https://imgur.com/llvOzfe)). Should be between 0 and 255. Default = 0 |
 | Rotation | int | Rotates the sprite clockwise. The value is in degrees. |
 | Interpolated | bool | If set to true, the game will transition between values. |
 
@@ -143,8 +143,8 @@ If the tag is child of `<LayerAnimation>` it may provide more attributes:
 
 | Attribute-Name | Type | Description |
 |:--|:--|:--|
-| XPivot | int | Sets a x coordinate for a "pin" where the layer can be rotated arround |
-| YPivot | int | Sets a y coordinate for a "pin" where the layer can be rotated arround |
+| XPivot | int | Sets a x coordinate for a "pin" where the layer can be rotated around. |
+| YPivot | int | Sets a y coordinate for a "pin" where the layer can be rotated around. |
 | XCrop | int | The x coordinate of the crop rectangle's top left vertex in the spritesheet. |
 | YCrop | int | The y coordinate of the crop rectangle's top left vertex in the spritesheet. |
 | Width | int | The width of the crop rectangle. |
@@ -152,7 +152,7 @@ If the tag is child of `<LayerAnimation>` it may provide more attributes:
 
 
 #### "Triggers" Tag
-Triggers for [events](#event-tag). This tag may be orphan.
+Triggers for [events](#event-tag).
 
 ##### "Trigger" Tag
 | Attribute-Name | Type | Description |
