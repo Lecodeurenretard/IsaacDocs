@@ -41,10 +41,6 @@ old tutorial: [https://www.reddit.com/r/themoddingofisaac/comments/36o00t/entity
 | reroll | bool ||
 | shutdoors | bool | If alive, force doors to be closed. |
 | shieldStrength | int ||
-| gibAmount | int ||
-| gibFlags | string | used Values: ['poop'] |
-| bestiaryAnim | string ||
-| bestiaryOverlay | string ||
 
 ## Tags explanation
 
@@ -80,8 +76,8 @@ Downpour Sprite: monster_017_gaper_downpour.png
 |Mausoleum|_mausoleum|
 |Gehenna|_gehenna|
 
-## `<gibs>` tag
-the `<gibs>` tag is used to define the gibs that are spawned when an entity is killed or destroyed.
+## `<gibs />` tag
+The `<gibs />` tag is used to define the gibs that are spawned when an entity is killed or destroyed.
 
 | Variable-Name | Possible Values | Description |
 |:--|:--|:--|
@@ -102,3 +98,30 @@ the `<gibs>` tag is used to define the gibs that are spawned when an entity is k
 | sound_baby | int |Possible values: [0,1] where 0 is off and 1 is on|
 | sound_bone | int |Possible values: [0,1] where 0 is off and 1 is on|
 | worm | int |Possible values: [0,1] where 0 is off and 1 is on|
+
+## `<bestiary />` tag
+The `<bestiary />` tag defines how is the entity is displayed in the game's bestiary.
+
+| Variable-Name | Type | Description |
+|:--|:--|:--|
+| transform | string | Three numbers separated by commas: `x,y,size`. Where `x` and `y` are the coordinates of the sprite's center and `size` is a multiplies its size (0.5 = 50%, 1 = 100%, 2 = 200%, ...). |
+| anim | string | The name of the animation played in the bestiary. Must be in the ANM2 specified by `anm2path`. |
+| overlay | string | If specified, play this animation on top of the other one. |
+| anm2path | string | If specified, search for `anim` in this file else use the one defined in `<entity>`. |
+| alt | string | If specified, dispay a floor variant (see [this section](#floor-specific-sprites) for more information). |
+
+## `<devolve />` tag
+Defines the enemy the entity is rerolled into by the D10.
+
+| Variable-Name | Type | Description |
+|:--|:--|:--|
+| id | int | The entity to devolve into: id.variant.subtype |
+| weight | int | Unused. |
+
+
+## `<preload-snd />` tag
+A sound to preload. There may be multiple `<preload-snd />` per entity.
+
+| Variable-Name | Type | Description |
+|:--|:--|:--|
+| id | int | The id of the sound (specified in sounds.xml). |
